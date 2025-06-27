@@ -13,5 +13,5 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
 
-// Exporter pour Vercel
+// Exporter l'Express app (Vercel utilisera cette fonction)
 module.exports = app;

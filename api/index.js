@@ -8,10 +8,13 @@ const publicPath = path.join(__dirname, '../public');
 // Servir les fichiers statiques
 app.use(express.static(publicPath));
 
-// Pour toutes les routes restantes, retourner index.html
+// Pour toutes les autres routes, renvoyer index.html
 app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
 
-// Exporter l'Express app (Vercel utilisera cette fonction)
+// Important : exporter un handler compatible Vercel
 module.exports = app;
+module.exports.handler = (req, res) => {
+  return app(req, res);
+};
